@@ -1,4 +1,4 @@
-(#include "noise/PerlinGenerator.h"
+#include "noise/PerlinGenerator.h"
 #include "image/ImageGenerator.h"
 
 #include <vector>
