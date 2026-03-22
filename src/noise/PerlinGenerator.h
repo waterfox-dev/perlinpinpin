@@ -28,6 +28,10 @@ public:
     PerlinGenerator() {
         this->permutation_table = this->getPermutationTable();
     }
+
+    ~PerlinGenerator() {
+        delete[] this->permutation_table;
+    }
     
     /**
      * Generator for a given point a Perlin Noise.

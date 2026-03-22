@@ -31,11 +31,13 @@ protected:
      */
     static int* getPermutationTable() {
         int* random_values = NoiseGenerator::getRandomValues(); 
-        int permutation_table[512];
+        int* permutation_table = new int[512];
 
         for(int i = 0; i < 512; i++) {
             permutation_table[i] = random_values[i & 255];
         }
+
+        delete[] random_values;
         return permutation_table;
     }
 

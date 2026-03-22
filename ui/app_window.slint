@@ -1,0 +1,22 @@
+import { Button, VerticalBox } from "std-widgets.slint";
+
+export component AppWindow inherits Window {
+    title: "Perlinpinpin Generator";
+    min-width: 300px;
+    min-height: 200px;
+
+    callback generate-clicked(); 
+
+    VerticalBox {
+        alignment: center;
+        Text {
+            text: "Generate a Perlin noise texture !";
+            font-size: 24px;
+            horizontal-alignment: center;
+        }
+        Button {
+            text: "Generate Perlin Noise !";
+            clicked => { root.generate-clicked(); }
+        }
+    }
+}

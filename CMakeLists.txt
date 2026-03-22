@@ -1,13 +1,24 @@
-cmake_minimum_required(VERSION 3.16)
-
+cmake_minimum_required(VERSION 3.19)
 project(perlinpinpin)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(perlinpinpin
-    src/main.cpp
+
+include(FetchContent)
+FetchContent_Declare(
+    Slint
+    GIT_REPOSITORY https://github.com/slint-ui/slint.git
+    GIT_TAG v1.15.1
+    SOURCE_SUBDIR api/cpp
 )
+FetchContent_MakeAvailable(Slint)
+
+add_executable(perlinpinpin src/main.cpp)
+
+slint_target_sources(perlinpinpin ui/app_window.slint)
+
+target_link_libraries(perlinpinpin PRIVATE Slint::Slint)
 
 find_package(Doxygen)
 
