@@ -1,9 +1,13 @@
+#pragma once
+
+#include "../functions/ISmoothingFunction.h"
+
 #include <numeric>
 #include <random>
 #include <algorithm>
 
 /**
- * Partially abstract class providing tools to generate a noise.
+ * @brief Partially abstract class providing tools to generate a noise.
  * 
  * @see PerlinGenerator
  * @author Clément BARATIN
@@ -13,19 +17,20 @@ class NoiseGenerator {
 public:
 
     /**
-     * Generate a noise for a given points.
+     * @brief Generate a noise for a given points.
      * Abstract to make it modulable for differents noise generator.
      * 
      * @param x the X value of the point.
      * @param y the Y value of the point.
+     * @param smoothing_function a smoothing function used to make the noise more regular.
      * @return The noise for a given point.
      */
-    virtual float noise(float x, float y) = 0;
+    virtual float noise(float x, float y, ISmoothingFunction const &smoothing_function) = 0;
 
 protected: 
 
     /**
-     * Return a permutation table (lenght: 512)
+     * @brief Return a permutation table (lenght: 512)
      * 
      * @return int* The permutation table.
      */
@@ -44,7 +49,8 @@ protected:
 private:
 
     /**
-     * Generate an array of 256 integers for 1 to 256 randomly ordered.
+     * @brief Generate an array of 256 integers for 1 to 256 randomly ordered.
+     * Can be used to generate the permutation table for the Perlin Noise.
      * Statically declared.
      * 
      * @return A pointer to the array.
